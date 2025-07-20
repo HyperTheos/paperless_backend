@@ -1,0 +1,14 @@
+package ru.hypertheos.paperless.service;
+
+import ru.hypertheos.paperless.model.dto.UserRequest;
+import ru.hypertheos.paperless.model.dto.UserResponse;
+
+import java.util.List;
+import java.util.UUID;
+
+public interface UserService {
+    List<UserResponse> getAllUsers();
+    UserResponse getUserById(UUID id);
+    UserResponse createUser(UserRequest userRequest);
+    void deleteUser(UUID id);
+}

@@ -1,0 +1,17 @@
+INSERT INTO pl_users(id, username, email, password)
+VALUES (gen_random_uuid(),
+        'kvalkhovik',
+        'kvalkhovik@hypertheos.ru',
+        'kvalkhovik_password'),
+       (gen_random_uuid(),
+        'test_user1',
+        'test_user1@hypertheos.ru',
+        'test_user1'),
+       (gen_random_uuid(),
+        'test_user2',
+        'test_user2@hypertheos.ru',
+        'test_user2'),
+       (gen_random_uuid(),
+        'test_user3',
+        'test_user3@hypertheos.ru',
+        'test_user3');
