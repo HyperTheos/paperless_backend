@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="create_table_user_roles" author="HyperTheos" context="dev">
+        <preConditions onFail="MARK_RAN">
+            <and>
+                <tableExists tableName="pl_users"/>
+                <tableExists tableName="pl_roles"/>
+                <not>
+                    <tableExists tableName="pl_user_roles"/>
+                </not>
+            </and>
+        </preConditions>
+
+        <createTable tableName="pl_user_roles" >
+            <column name="user_id" type="uuid">
+                <constraints
+                        nullable="false"
+                        foreignKeyName="fk_user_roles_user"
+                        referencedTableName="pl_users"
+                        referencedColumnNames="id"
+                        deleteCascade="true"/>
+            </column>
+
+            <column name="role_id" type="uuid">
+                <constraints
+                        nullable="false"
+                        foreignKeyName="fk_user_roles_role"
+                        referencedTableName="pl_roles"
+                        referencedColumnNames="id"
+                        deleteCascade="true"/>
+            </column>
+
+            <column name="assigned_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="assigned_by" type="uuid">
+                <constraints
+                        nullable="true"
+                        foreignKeyName="fk_user_roles_assigner"
+                        referencedTableName="pl_users"
+                        referencedColumnNames="id"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey
+                tableName="pl_user_roles"
+                columnNames="user_id, role_id"
+                constraintName="pk_user_roles"/>
+
+        <createIndex
+                tableName="pl_user_roles"
+                indexName="idx_user_roles_user">
+            <column name="user_id"/>
+        </createIndex>
+
+        <createIndex
+                tableName="pl_user_roles"
+                indexName="idx_user_roles_role">
+            <column name="role_id"/>
+        </createIndex>
+
+    </changeSet>
+
+    <changeSet id="assign_admin_role" author="HyperTheos" context="dev,test">
+        <preConditions>
+            <and>
+                <tableExists tableName="pl_users"/>
+                <tableExists tableName="pl_roles"/>
+                <tableExists tableName="pl_user_roles"/>
+                <sqlCheck expectedResult="1">
+                    SELECT COUNT(*) FROM pl_users WHERE username = 'admin'
+                </sqlCheck>
+                <sqlCheck expectedResult="1">
+                    SELECT COUNT(*) FROM pl_roles WHERE code = 'ADMIN'
+                </sqlCheck>
+                <sqlCheck expectedResult="0">
+                    SELECT COUNT(*) FROM pl_user_roles ur
+                    JOIN pl_users u ON ur.user_id = u.id
+                    JOIN pl_roles r ON ur.role_id = r.id
+                    WHERE u.username = 'admin' AND r.code = 'ADMIN'
+                </sqlCheck>
+            </and>
+        </preConditions>
+
+        <sql>
+            INSERT INTO pl_user_roles (user_id, role_id, assigned_by, assigned_at)
+            VALUES (
+                           (SELECT pl_u.id FROM pl_users pl_u WHERE pl_u.username = 'admin'),
+                           (SELECT pl_r.id FROM pl_roles pl_r WHERE pl_r.code = 'ADMIN'),
+                           (SELECT pl_u.id FROM pl_users pl_u WHERE pl_u.username = 'admin'),
+                           CURRENT_TIMESTAMP
+                   );
+        </sql>
+
+    </changeSet>
+
+</databaseChangeLog>

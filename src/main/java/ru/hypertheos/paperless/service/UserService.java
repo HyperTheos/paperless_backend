@@ -10,5 +10,6 @@ public interface UserService {
     List<UserResponse> getAllUsers();
     UserResponse getUserById(UUID id);
     UserResponse createUser(UserRequest userRequest);
+    UserResponse updateUser(UUID id, UserRequest userRequest);
     void deleteUser(UUID id);
 }

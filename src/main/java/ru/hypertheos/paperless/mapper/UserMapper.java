@@ -30,4 +30,10 @@ public class UserMapper {
                 .password(passwordEncoder.encode(userRequest.password()))
                 .build();
     }
+
+    public void updateEntity(UserRequest userRequest, User user) {
+        user.setUsername(userRequest.username());
+        user.setEmail(userRequest.email());
+        user.setPassword(passwordEncoder.encode(userRequest.password()));
+    }
 }

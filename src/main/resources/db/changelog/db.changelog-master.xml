@@ -6,6 +6,12 @@
         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
 
 
-    <include file="db/changelog/v1/create_table_user.xml"/>
+    <!-- Liquibase-скрипты для пользователей и ролей -->
+    <include file="/db/changelog/versions/v1/users/create_table_user.xml"/>
+    <include file="/db/changelog/versions/v1/users/create_table_roles.xml"/>
+    <include file="/db/changelog/versions/v1/users/create_table_user_roles.xml"/>
+
+    <!-- Liquibase-скрипты для документов-->
+
 
 </databaseChangeLog>
