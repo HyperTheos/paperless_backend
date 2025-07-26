@@ -5,9 +5,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.hypertheos.paperless.exception.UserNotFoundException;
 import ru.hypertheos.paperless.mapper.UserMapper;
-import ru.hypertheos.paperless.model.dto.UserRequest;
-import ru.hypertheos.paperless.model.dto.UserResponse;
-import ru.hypertheos.paperless.model.entity.User;
+import ru.hypertheos.paperless.model.dto.user.UserRequest;
+import ru.hypertheos.paperless.model.dto.user.UserResponse;
+import ru.hypertheos.paperless.model.entity.user.User;
 import ru.hypertheos.paperless.repository.UserRepository;
 import ru.hypertheos.paperless.service.UserService;
 

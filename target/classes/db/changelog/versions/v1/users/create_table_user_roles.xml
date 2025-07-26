@@ -5,7 +5,7 @@
                    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
     <changeSet id="create_table_user_roles" author="HyperTheos" context="dev">
-        <preConditions onFail="MARK_RAN">
+        <preConditions onFail="CONTINUE">
             <and>
                 <tableExists tableName="pl_users"/>
                 <tableExists tableName="pl_roles"/>

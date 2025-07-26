@@ -1,7 +1,7 @@
 package ru.hypertheos.paperless.service;
 
-import ru.hypertheos.paperless.model.dto.UserRequest;
-import ru.hypertheos.paperless.model.dto.UserResponse;
+import ru.hypertheos.paperless.model.dto.user.UserRequest;
+import ru.hypertheos.paperless.model.dto.user.UserResponse;
 
 import java.util.List;
 import java.util.UUID;

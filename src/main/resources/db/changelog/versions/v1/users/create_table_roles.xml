@@ -36,6 +36,9 @@
             <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
+            <column name="updated_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
 
         <createIndex
@@ -64,6 +67,20 @@
             <column name="code" value="USER"/>
             <column name="name" value="Standard User"/>
             <column name="description" value="Базовые права доступа"/>
+        </insert>
+
+        <insert tableName="pl_roles">
+            <column name="id" valueComputed="gen_random_uuid()"/>
+            <column name="code" value="MANAGER"/>
+            <column name="name" value="Manager User"/>
+            <column name="description" value="Расширенные права доступа"/>
+        </insert>
+
+        <insert tableName="pl_roles">
+            <column name="id" valueComputed="gen_random_uuid()"/>
+            <column name="code" value="AUDITOR"/>
+            <column name="name" value="Auditor User"/>
+            <column name="description" value="Дополнительные права доступа"/>
         </insert>
 
     </changeSet>

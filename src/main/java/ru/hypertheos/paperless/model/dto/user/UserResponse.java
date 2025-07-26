@@ -1,4 +1,4 @@
-package ru.hypertheos.paperless.model.dto;
+package ru.hypertheos.paperless.model.dto.user;
 
 import java.time.Instant;
 import java.util.UUID;

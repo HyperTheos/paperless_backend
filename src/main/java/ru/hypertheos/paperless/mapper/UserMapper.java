@@ -3,9 +3,9 @@ package ru.hypertheos.paperless.mapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import ru.hypertheos.paperless.model.dto.UserRequest;
-import ru.hypertheos.paperless.model.dto.UserResponse;
-import ru.hypertheos.paperless.model.entity.User;
+import ru.hypertheos.paperless.model.dto.user.UserRequest;
+import ru.hypertheos.paperless.model.dto.user.UserResponse;
+import ru.hypertheos.paperless.model.entity.user.User;
 
 @Component
 @RequiredArgsConstructor

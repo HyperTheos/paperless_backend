@@ -1,4 +1,4 @@
-package ru.hypertheos.paperless.model.entity;
+package ru.hypertheos.paperless.model.entity.user;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;

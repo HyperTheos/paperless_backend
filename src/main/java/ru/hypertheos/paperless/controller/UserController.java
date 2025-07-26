@@ -5,8 +5,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.hypertheos.paperless.model.dto.UserRequest;
-import ru.hypertheos.paperless.model.dto.UserResponse;
+import ru.hypertheos.paperless.model.dto.user.UserRequest;
+import ru.hypertheos.paperless.model.dto.user.UserResponse;
 import ru.hypertheos.paperless.service.UserService;
 
 import java.util.List;
